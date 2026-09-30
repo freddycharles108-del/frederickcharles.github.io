@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex Mercer | First-Year Engineering Portfolio</title>
+    <!-- Google Fonts: Inter for clean professional typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons for engineering iconography -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ==========================================================================
+           1. CUSTOM DESIGN TOKENS & CSS VARIABLES
+           ========================================================================== */
+        :root {
+            --primary-navy: #1e3a8a;
+            --primary-blue: #2563eb;
+            --accent-blue: #3b82f6;
+            --bg-light: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --border-color: #e2e8f0;
+            --badge-bg: #eff6ff;
+            --badge-text: #1d4ed8;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Base Resets & Global Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Container Utility */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Section Spacing */
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-subtitle {
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: var(--text-main);
+            letter-spacing: -0.025em;
+        }
+
+        /* ==========================================================================
+           2. HEADER & NAVIGATION
+           ========================================================================== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+            transition: var(--transition-smooth);
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 4.5rem;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-navy);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .logo-icon {
+            background: linear-gradient(135deg, var(--primary-navy), var(--primary-blue));
+            color: white;
+            width: 2.25rem;
+            height: 2.25rem;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            transition: var(--transition-smooth);
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-blue);
+        }
+
+        .btn-cta {
+            background: var(--primary-navy);
+            color: white !important;
+            padding: 0.6rem 1.25rem;
+            border-radius: 0.5rem;
+            font-weight: 600 !important;
+            transition: var(--transition-smooth);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 2px 4px rgba(30, 58, 138, 0.2);
+        }
+
+        .btn-cta:hover {
+            background: var(--primary-blue);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(37, 99, 235, 0.3);
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-main);
+            cursor: pointer;
+        }
+
+        /* ==========================================================================
+           3. HERO & ABOUT SECTION
+           ========================================================================== */
+        .hero {
+            padding-top: 8.5rem;
+            padding-bottom: 5rem;
+            background: linear-gradient(180deg, #ffffff 0%, var(--bg-light) 100%);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 3.5rem;
+            align-items: center;
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--badge-bg);
+            color: var(--badge-text);
+            padding: 0.4rem 0.9rem;
+            border-radius: 2rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.15;
+            color: var(--text-main);
+            margin-bottom: 1.25rem;
+            letter-spacing: -0.03em;
+        }
+
+        .hero-title span {
+            background: linear-gradient(135deg, var(--primary-navy), var(--primary-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .hero-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .stat-badge {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .stat-badge i {
+            color: var(--primary-blue);
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid var(--border-color);
+            color: var(--text-main);
+            padding: 0.65rem 1.25rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: var(--transition-smooth);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary-blue);
+            color: var(--primary-blue);
+            background: var(--badge-bg);
+        }
+
+        .profile-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            text-align: center;
+        }
+
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-navy), var(--primary-blue));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            margin: 0 auto 1.5rem auto;
+            border: 4px solid white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .profile-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .profile-sub {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .profile-info {
+            border-top: 1px solid var(--border-color);
+            padding-top: 1.25rem;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        .profile-info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .profile-info-item i {
+            color: var(--primary-blue);
+            width: 1.25rem;
+        }
+
+        /* ==========================================================================
+           4. PROJECTS SECTION
+           ========================================================================== */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.85rem;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(59, 130, 246, 0.4);
+        }
+
+        .project-preview {
+            height: 180px;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            position: relative;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .project-preview i {
+            font-size: 3.5rem;
+            color: var(--accent-blue);
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+
+        .project-preview-title {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #94a3b8;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .project-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--text-main);
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .tag {
+            background: var(--badge-bg);
+            color: var(--badge-text);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.25rem 0.6rem;
+            border-radius: 0.35rem;
+        }
+
+        .project-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .step-label {
+            font-weight: 700;
+            color: var(--text-main);
+            min-width: 75px;
+        }
+
+        .project-link {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: var(--transition-smooth);
+            margin-top: auto;
+        }
+
+        .project-link:hover {
+            gap: 0.6rem;
+        }
+
+        /* ==========================================================================
+           5. SKILLS SECTION
+           ========================================================================== */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.75rem;
+        }
+
+        .skill-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.85rem;
+            padding: 1.75rem;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-smooth);
+        }
+
+        .skill-card:hover {
+            border-color: var(--primary-blue);
+            box-shadow: var(--shadow-md);
+        }
+
+        .skill-header {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .skill-icon {
+            width: 2.75rem;
+            height: 2.75rem;
+            border-radius: 0.6rem;
+            background: var(--badge-bg);
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .skill-category-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .skill-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .skill-item {
+            font-size: 0.925rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-item::before {
+            content: "";
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: var(--primary-blue);
+        }
+
+        /* ==========================================================================
+           6. GOALS & ROADMAP SECTION
+           ========================================================================== */
+        .roadmap-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .roadmap-container::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background-color: var(--border-color);
+            top: 0;
+        }
+
+        .roadmap-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 3rem;
+            position: relative;
+            margin-bottom: 2.5rem;
+            width: 50%;
+        }
+
+        .roadmap-item:nth-child(even) {
+            align-self: flex-end;
+            justify-content: flex-start;
+            padding-right: 0;
+            padding-left: 3rem;
+            margin-left: 50%;
+        }
+
+        .roadmap-dot {
+            width: 1.25rem;
+            height: 1.25rem;
+            background: var(--primary-blue);
+            border: 4px solid white;
+            border-radius: 50%;
+            position: absolute;
+            right: -0.625rem;
+            top: 1.25rem;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+            z-index: 2;
+        }
+
+        .roadmap-item:nth-child(even) .roadmap-dot {
+            right: auto;
+            left: -0.625rem;
+        }
+
+        .roadmap-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            border-radius: 0.85rem;
+            box-shadow: var(--shadow-sm);
+            width: 100%;
+        }
+
+        .roadmap-time {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            text-transform: uppercase;
+            margin-bottom: 0.25rem;
+        }
+
+        .roadmap-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .roadmap-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* ==========================================================================
+           7. CONTACT & FOOTER SECTION
+           ========================================================================== */
+        .contact-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 3rem;
+            box-shadow: var(--shadow-lg);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .contact-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            margin-top: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .contact-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 0.5rem;
+            background: var(--badge-bg);
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            color: var(--text-main);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: var(--transition-smooth);
+            background-color: var(--bg-light);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            background-color: white;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 110px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: var(--primary-navy);
+            color: white;
+            border: none;
+            padding: 0.85rem;
+            border-radius: 0.5rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .btn-submit:hover {
+            background: var(--primary-blue);
+        }
+
+        footer {
+            background: #0f172a;
+            color: #94a3b8;
+            padding: 2.5rem 0;
+            text-align: center;
+            font-size: 0.9rem;
+            border-top: 1px solid #1e293b;
+        }
+
+        footer a {
+            color: #f8fafc;
+        }
+
+        footer a:hover {
+            color: var(--accent-blue);
+        }
+
+        /* Success Message Alert */
+        .form-alert {
+            display: none;
+            padding: 0.75rem 1rem;
+            background-color: #dcfce7;
+            color: #15803d;
+            border: 1px solid #bbf7d0;
+            border-radius: 0.5rem;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        /* ==========================================================================
+           8. RESPONSIVE MEDIA QUERIES
+           ========================================================================== */
+        @media (max-width: 992px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+            .profile-card {
+                max-width: 480px;
+                margin: 0 auto;
+            }
+            .contact-card {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: block;
+            }
+            .nav-links {
+                position: fixed;
+                top: 4.5rem;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 1.5rem;
+                border-bottom: 1px solid var(--border-color);
+                box-shadow: var(--shadow-md);
+                display: none;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .hero-title {
+                font-size: 2.25rem;
+            }
+            .roadmap-container::before {
+                left: 1rem;
+            }
+            .roadmap-item,
+            .roadmap-item:nth-child(even) {
+                width: 100%;
+                padding-left: 3rem;
+                padding-right: 0;
+                margin-left: 0;
+                justify-content: flex-start;
+            }
+            .roadmap-dot,
+            .roadmap-item:nth-child(even) .roadmap-dot {
+                left: 0.375rem;
+                right: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==========================================================================
+         HEADER & NAVIGATION BAR
+         Customization: Replace "Alex Mercer" with your actual name.
+         ========================================================================== -->
+    <header>
+        <div class="container nav-wrapper">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fa-solid fa-microchip"></i>
+                </div>
+                <!-- USER CUSTOMIZATION: Your Name -->
+                <span>Alex Mercer</span>
+            </a>
+            
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <nav class="nav-links" id="navLinks">
+                <a href="#about" class="nav-item">About</a>
+                <a href="#projects" class="nav-item">Projects</a>
+                <a href="#skills" class="nav-item">Skills</a>
+                <a href="#goals" class="nav-item">Goals</a>
+                <a href="#contact" class="nav-item">Contact</a>
+                <!-- USER CUSTOMIZATION: Update href with link to your actual hosted Resume PDF -->
+                <a href="#" class="btn-cta" onclick="alert('Link your PDF resume file here!'); return false;">
+                    <i class="fa-solid fa-file-arrow-down"></i> Resume
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- ==========================================================================
+             HERO & ABOUT SECTION
+             ========================================================================== -->
+        <section class="hero" id="about">
+            <div class="container hero-grid">
+                <div class="hero-text">
+                    <div class="hero-tag">
+                        <i class="fa-solid fa-graduation-cap"></i> First-Year Engineering Student
+                    </div>
+                    <h1 class="hero-title">
+                        Building physical hardware & <span>smart firmware solutions.</span>
+                    </h1>
+                    <p class="hero-description">
+                        Welcome! I am a first-year student at the <strong>University of New Haven</strong> exploring the intersection of embedded electronics, C/C++ programming, and CAD modeling. I focus on solving practical engineering problems from circuit prototype to functional code.
+                    </p>
+                    
+                    <div class="hero-badges">
+                        <div class="stat-badge">
+                            <i class="fa-solid fa-university"></i> UNH Engineering
+                        </div>
+                        <div class="stat-badge">
+                            <i class="fa-solid fa-code"></i> C / C++ Developer
+                        </div>
+                        <div class="stat-badge">
+                            <i class="fa-solid fa-cube"></i> OnShape & AutoCAD
+                        </div>
+                        <div class="stat-badge">
+                            <i class="fa-solid fa-bolt"></i> Circuit Soldering
+                        </div>
+                    </div>
+
+                    <div class="hero-actions">
+                        <a href="#projects" class="btn-cta">
+                            View My Work <i class="fa-solid fa-arrow-down"></i>
+                        </a>
+                        <a href="#contact" class="btn-outline">
+                            Get In Touch
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Profile Card Banner -->
+                <div class="profile-card">
+                    <div class="profile-avatar">
+                        <i class="fa-solid fa-user-gear"></i>
+                    </div>
+                    <h2 class="profile-name">Alex Mercer</h2>
+                    <p class="profile-sub">B.S. Engineering Candidate</p>
+                    
+                    <div class="profile-info">
+                        <div class="profile-info-item">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span>University of New Haven | West Haven, CT</span>
+                        </div>
+                        <div class="profile-info-item">
+                            <i class="fa-solid fa-envelope"></i>
+                            <!-- USER CUSTOMIZATION: Replace with your UNH email -->
+                            <span>amerc1@unh.newhaven.edu</span>
+                        </div>
+                        <div class="profile-info-item">
+                            <i class="fa-brands fa-github"></i>
+                            <span>github.com/alexmercer-eng</span>
+                        </div>
+                        <div class="profile-info-item">
+                            <i class="fa-brands fa-linkedin"></i>
+                            <span>linkedin.com/in/alexmercer-eng</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             ACADEMIC PROJECTS & COURSEWORK HIGHLIGHTS
+             ========================================================================== -->
+        <section id="projects" style="background-color: #ffffff;">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle">Practical Experience</span>
+                    <h2 class="section-title">Featured Engineering Projects</h2>
+                </div>
+
+                <div class="projects-grid">
+                    <!-- Project Card 1 -->
+                    <div class="project-card">
+                        <div class="project-preview">
+                            <i class="fa-solid fa-microchip"></i>
+                            <span class="project-preview-title">Embedded Systems / Hardware</span>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Microcontroller Sensor Circuit & Firmware</h3>
+                            <div class="project-tags">
+                                <span class="tag">C++</span>
+                                <span class="tag">Soldering</span>
+                                <span class="tag">Breadboarding</span>
+                                <span class="tag">Sensors</span>
+                            </div>
+                            <div class="project-steps">
+                                <div class="step-item">
+                                    <span class="step-label">Problem:</span>
+                                    <span>Unstable analog sensor readings caused by ambient electrical noise in lab circuits.</span>
+                                </div>
+                                <div class="step-item">
+                                    <span class="step-label">Approach:</span>
+                                    <span>Soldered a dedicated custom sensor PCB with filtering capacitors and programmed an exponential moving average filter loop in C++.</span>
+                                </div>
+                                <div class="step-item">
+                                    <span class="step-label">Outcome:</span>
+                                    <span>Reduced signal fluctuations by 85% and successfully output clean telemetry over serial connection.</span>
+                                </div>
+                            </div>
+                            <!-- USER CUSTOMIZATION: Add link to GitHub code or project file -->
+                            <a href="https://github.com" target="_blank" class="project-link">
+                                View Code & Schematics <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 2 -->
+                    <div class="project-card">
+                        <div class="project-preview">
+                            <i class="fa-solid fa-compass-drafting"></i>
+                            <span class="project-preview-title">CAD & Parametric Design</span>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Parametric Mechanical Gear Assembly</h3>
+                            <div class="project-tags">
+                                <span class="tag">OnShape</span>
+                                <span class="tag">AutoCAD</span>
+                                <span class="tag">2D Drafting</span>
+                                <span class="tag">3D Rendering</span>
+                            </div>
+                            <div class="project-steps">
+                                <div class="step-item">
+                                    <span class="step-label">Problem:</span>
+                                    <span>Design a compact spur-gear drive train with strict dimensional constraints for an intro lab module.</span>
+                                </div>
+                                <div class="step-item">
+                                    <span class="step-label">Approach:</span>
+                                    <span>Modeled gear profiles in OnShape using parametric equations, verified tolerances, and generated 2D fabrication drafts in AutoCAD.</span>
+                                </div>
+                                <div class="step-item">
+                                    <span class="step-label">Outcome:</span>
+                                    <span>Achieved 0.05mm mating tolerance with smooth rotation in simulated collision testing.</span>
+                                </div>
+                            </div>
+                            <a href="https://github.com" target="_blank" class="project-link">
+                                View CAD Render Models <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 3 -->
+                    <div class="project-card">
+                        <div class="project-preview">
+                            <i class="fa-solid fa-diagram-project"></i>
+                            <span class="project-preview-title">UNH Intro Design Challenge</span>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Autonomous Obstacle-Evading Prototype</h3>
+                            <div class="project-tags">
+                                <span class="tag">C Language</span>
+                                <span class="tag">Rapid Prototyping</span>
+                                <span class="tag">Teamwork</span>
+                                <span class="tag">Debugging</span>
+                            </div>
+                            <div class="project-steps">
+                                <div class="step-item">
+                                    <span class="step-label">Problem:</span>
+                                    <span>Construct a small mobile chassis capable of autonomously navigating an obstacle corridor within 60 seconds.</span>
+                                </div>
+                                <div class="step-item">
+                                    <span class="step-label">Approach:</span>
+                                    <span>Collaborated in a team of 4 UNH students to write C control routines, solder sensor wiring harnesses, and test motor drivers.</span>
+                                </div>
+                                <div class="step-item">
+                                    <span class="step-label">Outcome:</span>
+                                    <span>Completed the course in 42 seconds with zero wall contact, placing in the top tier of first-year design teams.</span>
+                                </div>
+                            </div>
+                            <a href="https://github.com" target="_blank" class="project-link">
+                                Read Design Report <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             SKILLS & TECHNICAL COMPETENCIES
+             ========================================================================== -->
+        <section id="skills">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle">Technical Toolkit</span>
+                    <h2 class="section-title">Skills & Competencies</h2>
+                </div>
+
+                <div class="skills-grid">
+                    <!-- Programming -->
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <div class="skill-icon">
+                                <i class="fa-solid fa-code"></i>
+                            </div>
+                            <h3 class="skill-category-title">Programming</h3>
+                        </div>
+                        <ul class="skill-list">
+                            <li class="skill-item">C Programming (Control structures, Pointers)</li>
+                            <li class="skill-item">C++ (Object-Oriented Basics)</li>
+                            <li class="skill-item">Git & GitHub Version Control</li>
+                            <li class="skill-item">Basic Data Structures & Logic</li>
+                        </ul>
+                    </div>
+
+                    <!-- CAD & Design -->
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <div class="skill-icon">
+                                <i class="fa-solid fa-cubes"></i>
+                            </div>
+                            <h3 class="skill-category-title">CAD & Modeling</h3>
+                        </div>
+                        <ul class="skill-list">
+                            <li class="skill-item">OnShape (3D Parametric Design)</li>
+                            <li class="skill-item">AutoCAD (2D Drafting & Layout)</li>
+                            <li class="skill-item">Assembly Constraints & Mating</li>
+                            <li class="skill-item">Dimensioning & Tolerance Standards</li>
+                        </ul>
+                    </div>
+
+                    <!-- Hardware & Fabrication -->
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <div class="skill-icon">
+                                <i class="fa-solid fa-wrench"></i>
+                            </div>
+                            <h3 class="skill-category-title">Hardware & Lab</h3>
+                        </div>
+                        <ul class="skill-list">
+                            <li class="skill-item">Precision Circuit Soldering</li>
+                            <li class="skill-item">Breadboarding & Prototyping</li>
+                            <li class="skill-item">Digital Multimeter Diagnostics</li>
+                            <li class="skill-item">Component Integrity Testing</li>
+                        </ul>
+                    </div>
+
+                    <!-- AI Literacy & Digital Tools -->
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <div class="skill-icon">
+                                <i class="fa-solid fa-brain"></i>
+                            </div>
+                            <h3 class="skill-category-title">AI Literacy & Workflows</h3>
+                        </div>
+                        <ul class="skill-list">
+                            <li class="skill-item">AI-Assisted C++ Code Debugging</li>
+                            <li class="skill-item">Prompt Engineering for Tech Synthesis</li>
+                            <li class="skill-item">Rapid Technical Documentation</li>
+                            <li class="skill-item">Algorithmic Design Optimization</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             CAREER GOALS & ROADMAP
+             ========================================================================== -->
+        <section id="goals" style="background-color: #ffffff;">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle">Trajectory & Vision</span>
+                    <h2 class="section-title">Academic & Career Roadmap</h2>
+                </div>
+
+                <div class="roadmap-container">
+                    <!-- Roadmap Item 1 -->
+                    <div class="roadmap-item">
+                        <div class="roadmap-dot"></div>
+                        <div class="roadmap-card">
+                            <span class="roadmap-time">Current Focus (First Year @ UNH)</span>
+                            <h3 class="roadmap-title">Core Fundamentals & Prototyping</h3>
+                            <p class="roadmap-desc">
+                                Mastering foundational C/C++ programming and CAD tools while actively participating in UNH hands-on engineering lab challenges.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Roadmap Item 2 -->
+                    <div class="roadmap-item">
+                        <div class="roadmap-dot"></div>
+                        <div class="roadmap-card">
+                            <span class="roadmap-time">Summer Target</span>
+                            <h3 class="roadmap-title">Undergraduate Research / Internship</h3>
+                            <p class="roadmap-desc">
+                                Seeking a summer research assistant position at UNH or an entry-level engineering internship in hardware design and testing.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Roadmap Item 3 -->
+                    <div class="roadmap-item">
+                        <div class="roadmap-dot"></div>
+                        <div class="roadmap-card">
+                            <span class="roadmap-time">Year 2 & Beyond</span>
+                            <h3 class="roadmap-title">Embedded Systems Specialization</h3>
+                            <p class="roadmap-desc">
+                                Expanding skill set into Python, Real-Time Operating Systems (RTOS), and Finite Element Analysis (FEA) for mechanical-electrical systems.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             CONTACT & FOOTER SECTION
+             ========================================================================== -->
+        <section id="contact">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle">Get In Touch</span>
+                    <h2 class="section-title">Connect With Me</h2>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-info">
+                        <div>
+                            <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.75rem;">Let's discuss opportunities.</h3>
+                            <p style="color: var(--text-muted); font-size: 0.95rem;">
+                                I am actively seeking undergraduate research collaborations, student organization projects, and industry internship opportunities for upcoming terms.
+                            </p>
+                        </div>
+
+                        <div class="contact-methods">
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <strong style="display: block; color: var(--text-main);">Email</strong>
+                                    <!-- USER CUSTOMIZATION: Email link -->
+                                    <a href="mailto:amerc1@unh.newhaven.edu">amerc1@unh.newhaven.edu</a>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fa-brands fa-linkedin"></i>
+                                </div>
+                                <div>
+                                    <strong style="display: block; color: var(--text-main);">LinkedIn</strong>
+                                    <a href="https://linkedin.com" target="_blank">linkedin.com/in/alexmercer-eng</a>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fa-brands fa-github"></i>
+                                </div>
+                                <div>
+                                    <strong style="display: block; color: var(--text-main);">GitHub</strong>
+                                    <a href="https://github.com" target="_blank">github.com/alexmercer-eng</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Contact Form Mockup -->
+                    <form id="contactForm" onsubmit="handleFormSubmit(event)">
+                        <div id="formAlert" class="form-alert">
+                            <i class="fa-solid fa-circle-check"></i> Thank you! Your message has been sent successfully.
+                        </div>
+
+                        <div class="form-group">
+                            <label for="name" class="form-label">Your Name</label>
+                            <input type="text" id="name" class="form-control" placeholder="e.g., Jane Doe" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="form-label">Your Email</label>
+                            <input type="email" id="email" class="form-control" placeholder="e.g., jane@example.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea id="message" class="form-control" placeholder="Hi Alex, I saw your portfolio and wanted to reach out regarding..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-submit">
+                            Send Message <i class="fa-solid fa-paper-plane" style="margin-left: 0.4rem;"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="year"></span> Alex Mercer. Built for GitHub Pages deployment.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.8rem;">
+                First-Year Engineering Portfolio | <a href="https://www.newhaven.edu/" target="_blank" rel="noopener">University of New Haven</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- ==========================================================================
+         JAVASCRIPT INTERACTIONS
+         ========================================================================== -->
+    <script>
+        // Set dynamic year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Mobile Menu Toggle Logic
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = mobileToggle.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Close mobile nav when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                const icon = mobileToggle.querySelector('i');
+                if (icon) {
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        });
+
+        // Contact Form Submission Mock Handler
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const alertBox = document.getElementById('formAlert');
+            alertBox.style.display = 'block';
+            
+            // Clear input fields
+            document.getElementById('name').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('message').value = '';
+
+            // Hide alert after 5 seconds
+            setTimeout(() => {
+                alertBox.style.display = 'none';
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
